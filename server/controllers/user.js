@@ -1,6 +1,7 @@
 const db = require('../models/user')
 const jwt = require('jsonwebtoken')
 const pwh = require('password-hash')
+require('dotenv').config()
 
 let createUser = function(req, res) {
   let newUser = new db({
@@ -33,7 +34,30 @@ let getAll = function(req, res) {
   })
 }
 
+let userFindOne = function(req, res) {
+  db.findOne({_id : req.params.id})
+    .exec(function(err, userOne) {
+      if (!err) {
+        res.send({ success: true, user: userOne})
+      } else {
+        res.send({ success: false, user: null })
+      }
+    })
+}
+
+let deleteUser = function(req, res) {
+  db.findByIdAndRemove(req.params.id, function(err, data) {
+    if (err) {
+      res.send({msg : err})
+    } else {
+      res.send({msg: 'User success deleted'})
+    }
+  })
+}
+
 module.exports = {
   createUser,
-  getAll
+  getAll,
+  userFindOne,
+  deleteUser
 }
