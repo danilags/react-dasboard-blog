@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
-// var contArticle = require('../controllers/article');
+var contArticle = require('../controllers/article');
 
 // router.post('/login', contUser.loginUser)
-router.get('/', function(req, res) {
-  res.send("Thanks udah buat lama")
-})
+router.get('/', contArticle.getAll)
+
+router.post('/', contArticle.createArticle)
+
+router.get('/:id', contArticle.findOneArticle)
+
+router.delete('/:id', contArticle.removeArticle)
 
 module.exports = router;
