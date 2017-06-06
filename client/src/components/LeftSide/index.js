@@ -1,5 +1,17 @@
 import React from 'react'
 
+import Profile from '../Profile'
+import RightSide from '../RightSide'
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom'
+
+
 const styles = {
   wrapper: {
     flex: 1,
@@ -26,12 +38,16 @@ class LeftSide extends React.Component {
   render () {
     return (
       <div className="leftSide" style={styles.leftSide}>
-        <ul>
-          <li>Home</li>
-          <li>Home</li>
-          <li>Home</li>
-          <li>Home</li>
-        </ul>
+        <Router>
+          <div className="nav">
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
+              <li><Link to="/article">Article</Link></li>
+            </ul>
+          </div>
+        </Router>
+
       </div>
     )
   }
