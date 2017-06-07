@@ -15,6 +15,8 @@ import RightSide from './components/RightSide'
 import Home from './components/Home'
 import Profile from './components/Profile'
 import TopNav from './components/TopNav'
+import Login from './components/Login'
+import Register from './components/Register'
 
 const styles = {
   wrapper: {
@@ -45,7 +47,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <Router>
           <div className="wrapper" style={styles.wrapper}>
               <TopNav />
@@ -64,6 +65,8 @@ class App extends Component {
                     <Route exact path="/" component={Home}
                     />
                     <Route path="/profile" component={Profile}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/register" component={Register}/>
                   </Switch>
                 </div>
               </div>

@@ -1,5 +1,14 @@
 import React from 'react'
 
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom'
+
+
 const styles = {
   navWrap : {
     width: '100%'
@@ -27,8 +36,16 @@ class TopNAv extends React.Component {
         <ul style={styles.ulNAv}>
           <li style={styles.liNav}>Interest</li>
           <li style={styles.liNav}>Jobs</li>
-          <li style={styles.liNav}>Login</li>
-          <li style={{ float: 'right' }}>Logout</li>
+          <li style={{
+            float: 'right',
+            color: '#fff',
+            listStyle: 'none',
+            padding: '14px 20px' }}><Link to="/login">Login</Link></li>
+            <li style={{
+              float: 'right',
+              color: '#fff',
+              listStyle: 'none',
+              padding: '14px 20px' }}><Link to="/register">Register</Link></li>
         </ul>
       </div>
     )
