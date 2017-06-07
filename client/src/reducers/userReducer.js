@@ -6,9 +6,11 @@ const initialState = {
 }
 
 function signUp(payload) {
+  console.log(payload + " tetstttt");
   if (payload.error === null || payload.error) {
     return initialState
   } else {
+    console.log("testttt");
     localStorage.setItem('token', payload.token)
     return {...payload}
   }

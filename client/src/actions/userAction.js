@@ -8,6 +8,7 @@ export const signUpSuccess = (data) => ({
 })
 
 export const signUp = (dataUser) => {
+  console.log(dataUser);
   dispatch => (
     axios.post('http://localhost:3000/users', dataUser)
     .then((res) => (dispatch(signUpSuccess(res.data)))

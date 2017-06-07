@@ -10,36 +10,51 @@ class Register extends React.Component {
       username: '',
       email: '',
       password: '',
-    }
+    };
 
-  }
-
-  handleSubmit(event) {
-    console.log(this.state.username);
-    console.log("jalann....");
-    event.preventDefault();
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    const newState = {}
-    newState[e.target.name] = e.target.value
+    const newState = {};
+    newState[e.target.name] = e.target.value;
+    console.log(newState);
     this.setState(newState)
   }
 
   render () {
+    const { username, email, password } = this.state
     return (
       <div className="register">
         <h2>Register</h2>
         <form onSubmit={(e) => {
           e.preventDefault()
-          this.props.signUp(this.state)
+          this.props.signUp({
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password
+          })
+          console.log(this.state +"ini state");
+          this.setState({username: '', email: '', password: ''})
         }}>
           <label>Username</label><br />
-            <input placeholder="Username" type="text" onChange={this.handleChange.bind(this)} /><br />
+            <input
+              placeholder="Username"
+              type="text"
+              onChange={(text) => this.setState({username: text})}
+            /><br />
           <label>Email</label><br />
-            <input placeholder="Email" type="text" onChange={this.handleChange.bind(this)}/><br />
+            <input
+              placeholder="Email"
+              type="text"
+              onChange={(text) => this.setState({email: text})}
+            /><br />
           <label>Password</label><br />
-            <input placeholder="Password" type="password" onChange={this.handleChange.bind(this)}/><br />
+            <input
+              placeholder="Password"
+              type="password"
+              onChange={(text) => this.setState({password: text})}
+          /><br />
           <input type="submit" />
         </form>
       </div>
