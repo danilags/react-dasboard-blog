@@ -17,6 +17,7 @@ import Profile from './components/Profile'
 import TopNav from './components/TopNav'
 import Login from './components/Login'
 import Register from './components/Register'
+import Article from './components/Article'
 
 const styles = {
   wrapper: {
@@ -67,6 +68,7 @@ class App extends Component {
                     <Route path="/profile" component={Profile}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/article" component={Article}/>
                   </Switch>
                 </div>
               </div>

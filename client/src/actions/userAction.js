@@ -7,11 +7,14 @@ export const signUpSuccess = (data) => ({
   payload: data
 })
 
-export const signUp = (dataUser) => {
-  console.log(dataUser);
+export const signUp = (dataUser) => (
+  // console.log("dari action -------- : " , dataUser);
   dispatch => (
     axios.post('http://localhost:3000/users', dataUser)
-    .then((res) => (dispatch(signUpSuccess(res.data)))
+    .then((res) => {
+        console.log("ini dispatch ----- : ", res.data);
+        return dispatch(signUpSuccess(res.data))
+      }
     )
   )
-}
+)

@@ -11,15 +11,13 @@ class Register extends React.Component {
       email: '',
       password: '',
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     const newState = {};
     newState[e.target.name] = e.target.value;
-    console.log(newState);
     this.setState(newState)
+    // console.log(this.state);
   }
 
   render () {
@@ -41,19 +39,22 @@ class Register extends React.Component {
             <input
               placeholder="Username"
               type="text"
-              onChange={(text) => this.setState({username: text})}
+              name="username"
+              onChange={this.handleChange.bind(this)}
             /><br />
           <label>Email</label><br />
             <input
               placeholder="Email"
               type="text"
-              onChange={(text) => this.setState({email: text})}
+              name="email"
+              onChange={this.handleChange.bind(this)}
             /><br />
           <label>Password</label><br />
             <input
               placeholder="Password"
               type="password"
-              onChange={(text) => this.setState({password: text})}
+              name="password"
+              onChange={this.handleChange.bind(this)}
           /><br />
           <input type="submit" />
         </form>

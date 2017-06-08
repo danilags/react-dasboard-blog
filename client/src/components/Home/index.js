@@ -27,6 +27,10 @@ class Home extends React.Component {
 
   }
 
+  componentDidMount() {
+    alert("Welcome Home !")
+  }
+
   render () {
     return (
       <div>
