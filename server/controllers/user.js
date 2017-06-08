@@ -30,6 +30,21 @@ let loginUser = function(req, res) {
   db.findOne({username: req.body.username}, (err, user) => {
     if (err) {
       res.send({error: err})
+    } else if (!user) {
+      res.send({error: "User not found!"})
+    } else {
+      if (pwh.verify(req.body.password, user.password)) {
+        let newToken = jwt.sign({username: user.username}, process.env.SECRET_KEY)
+        user.password = null
+        res.send({
+          success: true,
+          msg: 'Succes Login',
+          token: newToken,
+          userdata: user
+        })
+      } else {
+        res.send({error: 'Wrong password!'})
+      }
     }
   })
 }
@@ -66,6 +81,7 @@ let deleteUser = function(req, res) {
 module.exports = {
   createUser,
   getAll,
+  loginUser,
   userFindOne,
   deleteUser
 }

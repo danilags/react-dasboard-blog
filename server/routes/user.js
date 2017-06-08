@@ -6,6 +6,8 @@ router.get('/', userCont.getAll)
 
 router.post('/', userCont.createUser)
 
+router.post('/login', userCont.loginUser)
+
 router.get('/:id', userCont.userFindOne)
 
 router.delete('/', userCont.deleteUser)
