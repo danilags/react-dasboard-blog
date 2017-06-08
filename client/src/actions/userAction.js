@@ -18,3 +18,18 @@ export const signUp = (dataUser) => (
     )
   )
 )
+
+export const loginSuccess = (data) => ({
+  type: LOGIN_USER,
+  payload: data
+})
+
+export const loginUser = (dataUser) => (
+  dispatch => (
+    axios.post('http://localhost:3000/users/login', dataUser)
+    .then((res) => {
+      console.log("login jalan", res.data);
+      return dispatch(loginSuccess(res.data))
+    })
+  )
+)

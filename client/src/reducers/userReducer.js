@@ -16,7 +16,7 @@ function signUp(payload) {
   }
 }
 
-function loginSuccess() {
+function loginSuccess(payload) {
   if (payload.error === null || payload.error) {
     return initialState
   } else {
