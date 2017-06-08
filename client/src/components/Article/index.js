@@ -36,6 +36,7 @@ class Article extends React.Component {
   }
 
   componentDidMount() {
+    localStorage.setItem('lastPosition', '/article')
     console.log("testttt");
 
     this.props.fetchArticle()

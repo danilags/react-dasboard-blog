@@ -9,6 +9,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
+    localStorage.setItem('lastPosition', '/profile')
     console.log("Did mount");
     this.setState({username: 'daniel'})
   }

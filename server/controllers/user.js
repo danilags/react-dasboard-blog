@@ -20,8 +20,16 @@ let createUser = function(req, res) {
         success: true,
         msg: 'USer success created',
         token: newToken,
-        id: data._id,
+        usedata: data
       })
+    }
+  })
+}
+
+let loginUser = function(req, res) {
+  db.findOne({username: req.body.username}, (err, user) => {
+    if (err) {
+      res.send({error: err})
     }
   })
 }
