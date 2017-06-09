@@ -21,6 +21,10 @@ class Login extends React.Component {
     }
   }
 
+  componentDidMount() {
+
+  }
+
   handleChange(e) {
     let newState = {}
     newState[e.target.name] = e.target.value
@@ -31,6 +35,7 @@ class Login extends React.Component {
   render () {
     let currentpos = localStorage.getItem('lastPosition')
     if (localStorage.getItem('token')) {
+
       return (
         <Redirect to={currentpos} />
       )

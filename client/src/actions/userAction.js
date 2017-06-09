@@ -28,7 +28,7 @@ export const loginUser = (dataUser) => (
   dispatch => (
     axios.post('http://localhost:3000/users/login', dataUser)
     .then((res) => {
-      console.log("login jalan", res.data);
+      alert("Your Success Login!")
       return dispatch(loginSuccess(res.data))
     })
   )

@@ -59,8 +59,10 @@ let getAll = function(req, res) {
 
 let userFindOne = function(req, res) {
   db.findOne({_id : req.params.id})
+    .populate('user_article')
     .exec(function(err, userOne) {
       if (!err) {
+        userOne.password = null
         res.send({ success: true, user: userOne})
       } else {
         res.send({ success: false, user: null })

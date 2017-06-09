@@ -30,19 +30,29 @@ let createArticle = function(req, res) {
 }
 
 let getAll = function(req, res) {
-  db.find({}, function(err, data) {
-    if (!err) {
-      res.send(data)
-    }
-  })
+  db.find({})
+    .populate('author')
+    .exec(function(err, data) {
+      if (!err) {
+        let articles = data.map((article, idx) => {
+          // console.log("ini data-- ", article.author.password);
+          article.author.password = null
+        })
+        res.send(data)
+      } else {
+        res.send({msg: err})
+      }
+    })
 }
 
 let findOneArticle = function(req, res) {
   db.findOne({_id: req.params.id})
+    .populate('author')
     .exec(function(err, oneArticle) {
       if (err) {
         res.send({success: false, msg: err})
       } else {
+        oneArticle.author.password = null
         res.send({success: true, article: oneArticle})
       }
     })
