@@ -31,7 +31,10 @@ const styles = {
   leftSide: {
     width: '15%',
     display: 'table',
-    float: 'left'
+    float: 'left',
+    position: 'absolute',
+    background: '#ccc',
+    overflow: 'hidden',
   },
   rightSide: {
     width: '85%',

@@ -31,7 +31,6 @@ class Profile extends React.Component {
   }
 
   handlecreateArticle() {
-    console.log("jalannnnn... al");
     // this.state.formDisable = false
     this.setState({formDisable: false})
   }
@@ -49,7 +48,6 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state user : ---- ", state.logindata);
   userlogin: state.logindata
 }
 

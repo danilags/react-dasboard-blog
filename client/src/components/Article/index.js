@@ -49,9 +49,9 @@ class Article extends React.Component {
   componentDidMount() {
     localStorage.setItem('lastPosition', '/article')
     console.log("testttt");
-
-    this.props.fetchArticle()
+    console.log("ihsidhisd ==== ", this.props.localArticleState);
     this.props.localArticle()
+    this.props.fetchArticle()
   }
 
   render () {
@@ -96,13 +96,15 @@ const mapStateToProps = state => {
   // console.log("nanana : ", state.localArticle);
   return {
     article: state.article,
-    localArticleState: state.localArticle
+    localArticleState: state.localArticleState
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchArticle: () => dispatch(fetchArticle()),
-  localArticle: () => dispatch(localArticle())
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchArticle: () => dispatch(fetchArticle()),
+    localArticle: () => dispatch(localArticle())
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

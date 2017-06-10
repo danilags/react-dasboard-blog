@@ -1,3 +1,3 @@
-import { signUp } from './userAction';
+import { signUp, localArticle } from './userAction';
 
-export { signUp };
+export { signUp, localArticle };

@@ -1,4 +1,4 @@
-import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER} from '../actions/constants';
+import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER } from '../actions/constants';
 
 const initialState = {
   token: '',
@@ -9,7 +9,7 @@ const initialState = {
 function signUp(payload) {
   console.log(payload + " tetstttt");
   if (payload.error === null || payload.error) {
-    return initialState
+    return {...initialState}
   } else {
     localStorage.setItem('token', payload.token)
     return {...payload}
@@ -34,7 +34,7 @@ function logoutUser() {
     console.log("hapus");
   })
   localStorage.removeItem('username')
-  return initialState
+  return {...initialState}
 }
 
 const userReducer = (state = initialState, action) => {
