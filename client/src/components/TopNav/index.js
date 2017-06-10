@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/userAction';
 
 import {
   BrowserRouter as Router,
@@ -27,29 +29,80 @@ const styles = {
 class TopNAv extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      username: ''
+    }
 
   }
 
+  componentWillMount() {
+    let username = localStorage.getItem('username')
+    if (username !== null) {
+      let decodedUsername =  new Buffer(username, 'base64').toString('ascii')
+      // console.log("lalalal ", decodedUsername);
+      this.setState({username: decodedUsername}, function() {
+        // console.log("username lalal: ", this.state.username);
+      })
+    } else {
+      console.log("lewat");
+    }
+  }
+
+  handleLogoutUser() {
+    this.props.logoutUser()
+    return (
+      <Redirect to='/login' />
+    )
+  }
+
   render () {
+    console.log("halooooo : ", this.state.username);
     return (
       <div style={styles.ulNAv} className="navvvv">
         <ul style={styles.ulNAv}>
           <li style={styles.liNav}>Interest</li>
           <li style={styles.liNav}>Jobs</li>
-          <li style={{
-            float: 'right',
-            color: '#fff',
-            listStyle: 'none',
-            padding: '14px 20px' }}><Link to="/login">Login</Link></li>
+          {
+            localStorage.getItem('token') ? <div><li style={{
+              float: 'right',
+              color: '#fff',
+              listStyle: 'none',
+              padding: '14px 20px'
+            }}>{  this.state.username}</li>
             <li style={{
               float: 'right',
               color: '#fff',
               listStyle: 'none',
-              padding: '14px 20px' }}><Link to="/register">Register</Link></li>
+              padding: '14px 20px'
+            }}><button onClick={() => this.handleLogoutUser()}>Logout</button></li></div>
+            :
+            <div>
+              <li style={{
+                float: 'right',
+                color: '#fff',
+                listStyle: 'none',
+                padding: '14px 20px' }}><Link to="/login">Login</Link></li>
+              <li style={{
+                float: 'right',
+                color: '#fff',
+                listStyle: 'none',
+                padding: '14px 20px' }}><Link to="/register">Register</Link></li>
+            </div>
+            }
+          }
+
         </ul>
       </div>
     )
   }
 }
 
-export default TopNAv
+const mapStateToProps = state => ({
+  logindata: state.logindata
+})
+
+const mapDispatchToProps = dispatch => ({
+  logoutUser: () => dispatch(logoutUser())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopNAv)

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 
 class Profile extends React.Component {
   constructor() {
@@ -8,24 +9,40 @@ class Profile extends React.Component {
     }
   }
 
-  componentDidMount() {
-    localStorage.setItem('lastPosition', '/profile')
-    console.log("Did mount");
-    this.setState({username: 'daniel'})
+  componentWillMount() {
+    let username = localStorage.getItem('username')
+    if (username !== null) {
+      let decodedUsername =  new Buffer(username, 'base64').toString('ascii')
+      // console.log("lalalal ", decodedUsername);
+      this.setState({username: decodedUsername}, function() {
+        // console.log("username lalal: ", this.state.username);
+      })
+    } else {
+      console.log("lewat");
+    }
   }
 
-  componentWillMount() {
-    console.log("Will mount");
+  componentDidMount() {
+    localStorage.setItem('lastPosition', '/profile')
+    // this.setState({username: 'daniel'})
   }
+
 
   render () {
     console.log("render ...");
+    alert(`Welcome ${this.sat}`)
     return (
       <div>
         <h2>Profile Side!</h2>
+
       </div>
     )
   }
 }
 
-export default Profile;
+const mapStateToProps = state => ({
+  // console.log("state user : ---- ", state.logindata);
+  userlogin: state.logindata
+})
+
+export default connect(mapStateToProps, null)(Profile);

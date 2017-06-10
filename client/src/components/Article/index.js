@@ -53,7 +53,7 @@ class Article extends React.Component {
               <div key={index} className="content-article-left" style={styles.contentArticle}>
                 <h3>{data.title}</h3>
                 <p>{data.author} | {data.publishedAt}</p>
-                <a href={data.url}><img src={data.urlToImage} style={{ width: '50%', height: '200px' }} /></a>
+                <a href={data.url}><img src={data.urlToImage} style={{ width: '50%', height: 'auto' }} /></a>
                 <p style={styles.description}>{data.description}</p>
               </div>
           ))

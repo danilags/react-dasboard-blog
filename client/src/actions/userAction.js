@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { SIGNUP_USER, LOGIN_USER } from  './constants';
+import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER } from  './constants';
 
 export const signUpSuccess = (data) => ({
   type: SIGNUP_USER,
@@ -33,3 +33,7 @@ export const loginUser = (dataUser) => (
     })
   )
 )
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER
+})
