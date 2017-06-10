@@ -50,6 +50,7 @@ class TopNAv extends React.Component {
 
   handleLogoutUser() {
     this.props.logoutUser()
+    window.location.reload()
     return (
       <Redirect to='/login' />
     )

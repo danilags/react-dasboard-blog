@@ -24,6 +24,7 @@ function loginSuccess(payload) {
 
     localStorage.setItem('username', encodeUsername)
     localStorage.setItem('token', payload.token)
+    localStorage.setItem('id', payload.userdata._id)
     return {...payload, shouldRedirectSignIn: true}
   }
 }

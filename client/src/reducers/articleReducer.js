@@ -1,4 +1,4 @@
-import { GET_ARTICLE } from '../actions/constants';
+import { GET_ARTICLE, GET_LOCAL_ARTICLE } from '../actions/constants';
 
 const articleReducer = (state = [], action) => {
   switch (action.type) {

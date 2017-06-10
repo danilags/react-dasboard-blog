@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchArticle } from '../../actions/articleAction';
+import { fetchArticle, localArticle } from '../../actions/articleAction';
 
 import {
   BrowserRouter as Router,
@@ -12,19 +12,30 @@ import {
 
 
 const styles = {
+  articlepage: {
+    width: '500px',
+    height: 'auto',
+    display: 'block',
+    float: 'left',
+    listStyle: 'none',
+    margin: '0',
+    padding: '0',
+    overflow: 'hidden',
+  },
   contentArticle: {
     float: 'left',
     textAlign: 'left',
-    padding: '5px 20px'
+    padding: '5px'
   },
   contentArticle2: {
-    float: 'right',
+    float: 'left',
     textAlign: 'left',
-    padding: '5px 20px'
+    padding: '5px'
   },
   description: {
-    width: '50%',
+    width: '200px',
     padding: '10px',
+    display: 'table'
   }
 }
 
@@ -40,35 +51,58 @@ class Article extends React.Component {
     console.log("testttt");
 
     this.props.fetchArticle()
+    this.props.localArticle()
   }
 
   render () {
     return (
-      <div className="articlepage">
+      <ul className="articlepage" style={styles.articlepage} >
         <h1>Article Page</h1>
         {
           this.props.article.length == 0 ? <h2>Loading ... </h2> :
 
           this.props.article.map((data, index) => (
-              <div key={index} className="content-article-left" style={styles.contentArticle}>
-                <h3>{data.title}</h3>
-                <p>{data.author} | {data.publishedAt}</p>
-                <a href={data.url}><img src={data.urlToImage} style={{ width: '50%', height: 'auto' }} /></a>
-                <p style={styles.description}>{data.description}</p>
-              </div>
+              <li key={index} className="content-article-left" style={styles.contentArticle}>
+                <div style={{
+                  display: 'block',
+                  color: '#000',
+                  textAlign: 'center',
+                  padding: '14px 16px',
+                }}>
+                  <h3>{data.title}</h3>
+                  <p>{data.author} | {data.publishedAt}</p>
+                  <a href={data.url}><img src={data.urlToImage} style={{ width: '50%', height: 'auto' }} /></a>
+                  <p style={styles.description}>{data.description}</p>
+                </div>
+              </li>
           ))
         }
-      </div>
+        {
+          this.props.localArticleState.map((data, index) => (
+              <li key={index} className="content-article-right" style={styles.contentArticle2}>
+                <h3>{data.title}</h3>
+                <p>{data.author.username} | {data.createdAt}</p>
+                <p style={styles.description}>{data.content}</p>
+              </li>
+          ))
+
+        }
+      </ul>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  article: state.article
-})
+const mapStateToProps = state => {
+  // console.log("nanana : ", state.localArticle);
+  return {
+    article: state.article,
+    localArticleState: state.localArticle
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
-  fetchArticle: () => dispatch(fetchArticle())
+  fetchArticle: () => dispatch(fetchArticle()),
+  localArticle: () => dispatch(localArticle())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

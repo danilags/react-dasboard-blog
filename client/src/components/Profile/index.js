@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import CreateArticle from '../Article/createArticle';
+
 class Profile extends React.Component {
   constructor() {
     super()
     this.state = {
-      username: ""
+      username: "",
+      formDisable: true,
     }
   }
 
@@ -18,7 +21,7 @@ class Profile extends React.Component {
         // console.log("username lalal: ", this.state.username);
       })
     } else {
-      console.log("lewat");
+      return this.state
     }
   }
 
@@ -27,22 +30,27 @@ class Profile extends React.Component {
     // this.setState({username: 'daniel'})
   }
 
+  handlecreateArticle() {
+    console.log("jalannnnn... al");
+    // this.state.formDisable = false
+    this.setState({formDisable: false})
+  }
+
 
   render () {
-    console.log("render ...");
-    alert(`Welcome ${this.sat}`)
     return (
       <div>
         <h2>Profile Side!</h2>
-
+        <button onClick={() => this.handlecreateArticle()}>Create Article </button>
+        <CreateArticle form={this.state.formDisable} />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  // console.log("state user : ---- ", state.logindata);
+const mapStateToProps = state => {
+  console.log("state user : ---- ", state.logindata);
   userlogin: state.logindata
-})
+}
 
 export default connect(mapStateToProps, null)(Profile);

@@ -44,7 +44,7 @@ class Login extends React.Component {
         <div>
           <h2>Login Page</h2>
           <form onSubmit={(e) => {
-            e.preventDefault()
+            // e.preventDefault()
             this.props.loginUser({
               username: this.state.username,
               password: this.state.password

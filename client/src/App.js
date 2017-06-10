@@ -23,7 +23,7 @@ const styles = {
   wrapper: {
     margin: '0 auto',
     display: 'block',
-    width: '80%',
+    width: '90%',
     padding: '0 20px',
     flex: 1,
     justifyContent: 'flex-start'
@@ -43,6 +43,15 @@ const styles = {
 class App extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      userlogin: false
+    }
+  }
+
+  componentWillMount() {
+    if (localStorage.getItem('token')) {
+      this.setState({userlogin: true})
+    }
   }
 
   render() {
@@ -55,8 +64,9 @@ class App extends Component {
                 <div className="nav">
                   <ul style={{ listStyle: 'none' }}>
                     <li style={{ padding: 10 }}><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></li>
-                    <li style={{ padding: 10 }}><Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link></li>
+                    { !this.state.userlogin ? '' : <li style={{ padding: 10 }}><Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link></li> }
                     <li style={{ padding: 10 }}><Link to="/article" style={{ textDecoration: 'none' }}>Article</Link></li>
+                    <li style={{ padding: 10 }}>Pengaturan</li>
                   </ul>
                 </div>
               </div>
@@ -65,7 +75,7 @@ class App extends Component {
                   <Switch>
                     <Route exact path="/" component={Home}
                     />
-                    <Route path="/profile" component={Profile}/>
+                    { !this.state.userlogin ? <Route path="/login" component={Login}/> :  <Route path="/profile" component={Profile} /> }
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/article" component={Article}/>
