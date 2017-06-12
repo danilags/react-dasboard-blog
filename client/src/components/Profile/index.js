@@ -5,6 +5,7 @@ import CreateArticle from '../Article/createArticle';
 import UserArticle from '../Article/usersArticle';
 import Article from '../Article';
 
+import { fetchUserArticle } from '../../actions/userAction';
 
 class Profile extends React.Component {
   constructor() {
@@ -41,7 +42,8 @@ class Profile extends React.Component {
 
   handleUserArticle() {
     this.setState({formDisable: true, disableUserArticle: false})
-
+    let userId = localStorage.getItem('id')
+    this.props.fetchUserArticle(userId)
   }
 
 
@@ -62,6 +64,10 @@ const mapStateToProps = state => {
   userlogin: state.logindata
 }
 
+const mapDispatchToProps = dispatch => ({
+  fetchUserArticle: (userId) => dispatch(fetchUserArticle(userId))
+})
 
 
-export default connect(mapStateToProps, null)(Profile);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

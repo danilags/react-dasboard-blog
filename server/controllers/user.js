@@ -7,7 +7,7 @@ let createUser = function(req, res) {
   let newUser = new db({
     username      : req.body.username,
     email         : req.body.email,
-    password      : pwh.generate(req.body.password),
+    password      : req.body.password,
     user_article  : []
   })
 

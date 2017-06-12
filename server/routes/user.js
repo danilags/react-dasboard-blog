@@ -10,6 +10,6 @@ router.post('/login', userCont.loginUser)
 
 router.get('/:id', userCont.userFindOne)
 
-router.delete('/', userCont.deleteUser)
+router.delete('/:id', userCont.deleteUser)
 
 module.exports = router;

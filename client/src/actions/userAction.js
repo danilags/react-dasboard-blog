@@ -12,7 +12,7 @@ export const signUp = (dataUser) => (
   dispatch => (
     axios.post('http://localhost:3000/users', dataUser)
     .then((res) => {
-        console.log("ini dispatch ----- : ", res.data);
+        // console.log("ini dispatch ----- : ", res.data);
         return dispatch(signUpSuccess(res.data))
       }
     )
@@ -28,7 +28,6 @@ export const loginUser = (dataUser) => (
   dispatch => (
     axios.post('http://localhost:3000/users/login', dataUser)
     .then((res) => {
-      alert("Your Success Login!")
       return dispatch(loginSuccess(res.data))
     })
   )
@@ -48,8 +47,8 @@ export const fetchUserArticle = (idUser) => (
   dispatch => (
     axios.get('http://localhost:3000/users/'+idUser)
     .then((res) => {
-      // console.log(res.data);
-      return dispatch(fetchArticleSucces(res.data))
+      console.log("test 1 2 4 : ", res.data.user_article);
+      return dispatch(fetchArticleSucces(res.data.user_article))
     })
   )
 )

@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUserArticle } from '../../actions/userAction';
-
-
 class UserArticle extends React.Component {
   constructor(props) {
     super(props)
@@ -14,7 +11,6 @@ class UserArticle extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("props : ...", nextProps);
     this.setState({disableUserArticle: nextProps.list})
   }
 
@@ -24,27 +20,35 @@ class UserArticle extends React.Component {
   }
 
   componentDidMount() {
-    let userId = localStorage.getItem('id')
-    this.props.fetchUserArticle(userId)
-    console.log("state siap pakai", this.props.localArticleState);
+
+    // console.log("state siap pakai", this.props.localArticleState);
   }
 
   render () {
+    // console.log("ini state dari redux ", this.state.articles);
     return (
-      <div>
-        <h2>Ini list punya user</h2>
+      <div style={{ textAlign: 'left' }}>
+        <ul style={{ listStyle: 'none', fontFamily: 'Arial' }}>
+          {
+          this.props.articles.length == 0 ? <h2>Press any button ...</h2> :
+            this.props.articles.map((art, idx) => (
+              <li>
+                <h2>{ art.title }</h2>
+                <p>{ art.content }</p>
+              </li>
+            ))
+          }
 
+        </ul>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  localArticleState: state.localArticleState
+  return {
+    articles: state.localArticleState
+  }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchUserArticle: (userId) => dispatch(fetchUserArticle(userId))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserArticle);
+export default connect(mapStateToProps, null)(UserArticle);

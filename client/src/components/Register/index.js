@@ -51,7 +51,7 @@ class Register extends React.Component {
         <div className="register">
           <h2>Register</h2>
           <form onSubmit={(e) => {
-            e.preventDefault()
+            // e.preventDefault()
             this.props.signUp({
               username: this.state.username,
               email: this.state.email,

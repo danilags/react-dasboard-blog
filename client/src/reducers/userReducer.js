@@ -33,6 +33,9 @@ function logoutUser() {
   localStorage.removeItem('token', function() {
     console.log("hapus");
   })
+  localStorage.removeItem('id', function() {
+    console.log("hapus");
+  })
   localStorage.removeItem('username')
   return {...initialState}
 }

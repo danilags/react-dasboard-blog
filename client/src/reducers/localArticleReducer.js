@@ -1,12 +1,7 @@
 import { GET_LOCAL_ARTICLE, FETCH_USER_ARTICLES } from '../actions/constants';
 
-
-const ArticleUsers = (state, payload) => {
-  if (payload.error === null || payload.errror) {
-    return {...state}
-  } else {
-    return {...payload}
-  }
+function articleUserOne(payload) {
+  return payload
 }
 
 const localArticleReducer = (state = [], action) => {
@@ -14,7 +9,7 @@ const localArticleReducer = (state = [], action) => {
     case GET_LOCAL_ARTICLE: {
       return action.payload
     }
-    case FETCH_USER_ARTICLES: return ArticleUsers(state, action.payload)
+    case FETCH_USER_ARTICLES: return articleUserOne(action.payload)
     default: return state
   }
 }
