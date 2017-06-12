@@ -63,7 +63,8 @@ let userFindOne = function(req, res) {
     .exec(function(err, userOne) {
       if (!err) {
         userOne.password = null
-        res.send({ success: true, user: userOne})
+        console.log("user findOne : ", userOne.user_article[0].title);
+        res.send(userOne)
       } else {
         res.send({ success: false, user: null })
       }

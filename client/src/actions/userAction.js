@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER } from  './constants';
+import { SIGNUP_USER, LOGIN_USER, LOGOUT_USER, FETCH_USER_ARTICLES } from  './constants';
 
 export const signUpSuccess = (data) => ({
   type: SIGNUP_USER,
@@ -37,3 +37,19 @@ export const loginUser = (dataUser) => (
 export const logoutUser = () => ({
   type: LOGOUT_USER
 })
+
+
+export const fetchArticleSucces = (articles) => ({
+  type: FETCH_USER_ARTICLES,
+  payload: articles
+})
+
+export const fetchUserArticle = (idUser) => (
+  dispatch => (
+    axios.get('http://localhost:3000/users/'+idUser)
+    .then((res) => {
+      // console.log(res.data);
+      return dispatch(fetchArticleSucces(res.data))
+    })
+  )
+)

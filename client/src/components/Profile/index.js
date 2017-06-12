@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CreateArticle from '../Article/createArticle';
+import UserArticle from '../Article/usersArticle';
+import Article from '../Article';
+
 
 class Profile extends React.Component {
   constructor() {
@@ -9,6 +12,7 @@ class Profile extends React.Component {
     this.state = {
       username: "",
       formDisable: true,
+      disableUserArticle: true,
     }
   }
 
@@ -32,7 +36,12 @@ class Profile extends React.Component {
 
   handlecreateArticle() {
     // this.state.formDisable = false
-    this.setState({formDisable: false})
+    this.setState({formDisable: false, disableUserArticle: true})
+  }
+
+  handleUserArticle() {
+    this.setState({formDisable: true, disableUserArticle: false})
+
   }
 
 
@@ -41,7 +50,9 @@ class Profile extends React.Component {
       <div>
         <h2>Profile Side!</h2>
         <button onClick={() => this.handlecreateArticle()}>Create Article </button>
+        <button onClick={() => this.handleUserArticle()}>Your Article </button>
         <CreateArticle form={this.state.formDisable} />
+        <UserArticle list={this.state.disableUserArticle} />
       </div>
     )
   }
@@ -50,5 +61,7 @@ class Profile extends React.Component {
 const mapStateToProps = state => {
   userlogin: state.logindata
 }
+
+
 
 export default connect(mapStateToProps, null)(Profile);

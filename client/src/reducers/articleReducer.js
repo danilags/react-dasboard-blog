@@ -14,6 +14,7 @@ function createArticle(payload) {
   }
 }
 
+
 const articleReducer = (state = [], action) => {
   switch (action.type) {
     case GET_ARTICLE: {

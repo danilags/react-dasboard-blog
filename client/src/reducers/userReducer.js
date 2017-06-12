@@ -37,6 +37,8 @@ function logoutUser() {
   return {...initialState}
 }
 
+
+
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGNUP_USER: return signUp(action.payload)
