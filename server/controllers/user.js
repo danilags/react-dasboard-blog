@@ -1,3 +1,5 @@
+'use strict';
+
 const db = require('../models/user')
 const jwt = require('jsonwebtoken')
 const pwh = require('password-hash')
